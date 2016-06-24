@@ -3,9 +3,9 @@ using AccountsLib;
 
 namespace Bank
 {
-    class Program
+    internal class Program
     {
-        static void Main()
+        internal static void Main()
         {
             Console.WriteLine("Let's create our first account! Please enter Account ID:");
             int id;
@@ -21,7 +21,7 @@ namespace Bank
                 Console.WriteLine("error");
                 return;
             }
-            Account acc = AccountFactory.CreateAccount(id, balance);
+            var acc = AccountFactory.CreateAccount(id, balance);
             Console.WriteLine("Account id = " + id + " successfully created!");
 
             Console.WriteLine("Let's Deposit some money to our account!, please enter amount:");
@@ -77,7 +77,7 @@ namespace Bank
                 Console.WriteLine("error");
                 return;
             }
-            Account acc2 = AccountFactory.CreateAccount(id2, balance2);
+            var acc2 = AccountFactory.CreateAccount(id2, balance2);
             Console.WriteLine("Account id = " + id2 + " successfully created!");
 
             Console.WriteLine("Let's Transfer some money from our first accout to second account, please enter amount:");

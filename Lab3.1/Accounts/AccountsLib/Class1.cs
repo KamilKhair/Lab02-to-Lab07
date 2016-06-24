@@ -21,66 +21,24 @@
 
         public bool Deposit(double amount)
         {
-            try
-            {
-                if (amount > 0)
-                {
-                    _balance += amount;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch
-            {
-                return false;
-            }
+            if (!(amount > 0)) return false;
+            _balance += amount;
+            return true;
         }
 
         public bool Withdraw(double amount)
         {
-            if (_balance > amount)
-            {
-                _balance -= amount;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            if (!(_balance > amount)) return false;
+            _balance -= amount;
+            return true;
         }
 
         public bool Transfer(Account distenationAcc, double amount)
         {
-            try
-            {
-                if (_balance >= amount)
-                {
-                    distenationAcc._balance += amount;
-                    _balance -= amount;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-        }
-    }
-
-    public static class AccountFactory
-    {
-        public static Account CreateAccount(int id, double balance)
-        {
-            Account account = new Account(id);
-            account.Deposit(balance);
-            return account;
+            if (!(_balance >= amount)) return false;
+            distenationAcc._balance += amount;
+            _balance -= amount;
+            return true;
         }
     }
 }
