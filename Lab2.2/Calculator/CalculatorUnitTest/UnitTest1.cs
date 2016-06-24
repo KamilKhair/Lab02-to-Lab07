@@ -10,7 +10,7 @@ namespace CalculatorUnitTest
         public void TestAdd()
         {
             var c = new Calculator.Calculator();
-            Assert.AreEqual(2.0, c.Calc(1,1,"+"));
+            Assert.AreEqual(2.0, c.Calc(1, 1, "+"));
         }
 
         [TestMethod]
