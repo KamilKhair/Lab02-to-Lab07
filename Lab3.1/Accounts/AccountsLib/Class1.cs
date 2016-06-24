@@ -2,42 +2,35 @@
 {
     public class Account
     {
-        readonly int _id;
-        double _balance;
         internal Account(int id)
         {
-            _id = id;
+            Id = id;
+            Balance = 0;
         }
 
-        public int ID
-        {
-            get { return _id; }
-        }
+        public int Id { get; }
 
-        public double Balance
-        {
-            get { return _balance; }
-        }
+        public double Balance { get; private set; }
 
         public bool Deposit(double amount)
         {
             if (!(amount > 0)) return false;
-            _balance += amount;
+            Balance += amount;
             return true;
         }
 
         public bool Withdraw(double amount)
         {
-            if (!(_balance > amount)) return false;
-            _balance -= amount;
+            if (!(Balance > amount)) return false;
+            Balance -= amount;
             return true;
         }
 
         public bool Transfer(Account distenationAcc, double amount)
         {
-            if (!(_balance >= amount)) return false;
-            distenationAcc._balance += amount;
-            _balance -= amount;
+            if (!(Balance >= amount)) return false;
+            distenationAcc.Balance += amount;
+            Balance -= amount;
             return true;
         }
     }
