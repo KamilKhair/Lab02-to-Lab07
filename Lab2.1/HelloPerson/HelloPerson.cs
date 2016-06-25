@@ -2,7 +2,7 @@
 
 namespace HelloPerson
 {
-    internal class Program
+    internal class HelloPerson
     {
         public static void Main()
         {

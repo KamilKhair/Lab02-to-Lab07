@@ -1,10 +1,8 @@
-using System;
-
 namespace Calculator
 {
-    public class Calculator
+    public class Calc
     {
-        public double Calc(double a, double b, string s)
+        public double Calcu(double a, double b, string s)
         {
             switch (s)
             {
@@ -15,14 +13,15 @@ namespace Calculator
                 case "*":
                     return Mul(a, b);
                 case "/":
-                    return Div(a, b);
+                    return b != 0 ? Div(a, b) : double.NaN;
                 default:
-                    return Math.PI; // if the operator is incorrect Calc returns a non-rational number - For example Math.PI
+                    return double.NaN;  // double.NAN represents a value that is not a number
             }
         }
         private static double Add(double a, double b)
         {
-            return a + b;
+            var result = a + b;
+            return result;
         }
 
         private static double Sub(double a, double b)
