@@ -40,17 +40,34 @@ namespace MultiDictionaryTester
         }
 
         [TestMethod]
-        public void Test_Remove_Key_Failure()
+        public void Test_Remove_Key_Failure_Empty_Dictionary()
         {
             var dictionary = new MultiDictionary<int, string>();
             Assert.AreEqual(false, dictionary.Remove(3));
         }
 
         [TestMethod]
-        public void Test_Remove_Value_Failure()
+        public void Test_Remove_Value_Failure_Empty_Dictionary()
         {
             var dictionary = new MultiDictionary<int, string>();
             Assert.AreEqual(false, dictionary.Remove(3, "sun"));
+        }
+
+        [TestMethod]
+        public void Test_Remove_Key_Failure()
+        {
+            var dictionary = new MultiDictionary<int, string> { { 3, "sun" }, { 2, "two" }, { 3, "three" } };
+            Assert.AreEqual(false, dictionary.Remove(1));
+            Assert.AreEqual(false, dictionary.Remove(4));
+        }
+
+        [TestMethod]
+        public void Test_Remove_Value_Failure()
+        {
+            var dictionary = new MultiDictionary<int, string> { { 3, "sun" }, { 2, "two" }, { 3, "three" } };
+            Assert.AreEqual(false, dictionary.Remove(4, "sun"));
+            Assert.AreEqual(false, dictionary.Remove(3, "two"));
+            Assert.AreEqual(false, dictionary.Remove(1, "one"));
         }
 
         [TestMethod]
