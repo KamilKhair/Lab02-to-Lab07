@@ -3,31 +3,31 @@ using System.Collections.Generic;
 
 namespace GenericApp
 {
-    public interface IMultiDictionary<TK, TV>
+    public interface IMultiDictionary<TKey, TValue>
     {
-        void Add(TK key, TV value);
-        bool Remove(TK key);
-        bool Remove(TK key, TV value);
+        void Add(TKey key, TValue value);
+        bool Remove(TKey key);
+        bool Remove(TKey key, TValue value);
         void Clear();
-        bool ContainsKey(TK key);
-        bool Contains(TK key, TV value);
-        ICollection<TK> Keys { get; }
-        ICollection<LinkedList<TV>> Values { get; }
+        bool ContainsKey(TKey key);
+        bool Contains(TKey key, TValue value);
+        ICollection<TKey> Keys { get; }
+        ICollection<TValue> Values { get; }
         int Count { get; }
     }
 
-    public class MultiDictionary<TK, TV> : IMultiDictionary<TK, TV>, IEnumerable<KeyValuePair<TK, IEnumerable<TV>>>
+    public class MultiDictionary<TKey, TValue> : IMultiDictionary<TKey, TValue>, IEnumerable<KeyValuePair<TKey, IEnumerable<TValue>>>
     {
         public MultiDictionary()
         {
-            Dictionary = new Dictionary<TK, LinkedList<TV>>();
+            Dictionary = new Dictionary<TKey, LinkedList<TValue>>();
             Count = 0;
         }
 
-        public Dictionary<TK, LinkedList<TV>> Dictionary { get;}
+        private Dictionary<TKey, LinkedList<TValue>> Dictionary { get;}
 
 
-        public void Add(TK key, TV value)
+        public void Add(TKey key, TValue value)
         {
             if (Dictionary.ContainsKey(key))
             {
@@ -35,40 +35,44 @@ namespace GenericApp
             }
             else
             {
-                Dictionary.Add(key, new LinkedList<TV>());
+                Dictionary.Add(key, new LinkedList<TValue>());
                 Dictionary[key].AddLast(value);
             }
             ++Count;
         }
 
-        public bool Remove(TK key)
+        public bool Remove(TKey key)
         {
-            if (!Dictionary.Remove(key)) return false;
-            --Count;
+            if (!Dictionary.ContainsKey(key)) return false;
+            Count -= Dictionary[key].Count;
+            Dictionary.Remove(key);
             return true;
         }
 
-        public bool Remove(TK key, TV value)
+        public bool Remove(TKey key, TValue value)
         {
             if (!Dictionary.ContainsKey(key)) return false;
+            if (!Dictionary[key].Remove(value)) return false;
+            if (Dictionary[key].Count == 0)
             {
-                if (!Dictionary[key].Remove(value)) return false;
-                --Count;
-                return true;
+               Dictionary.Remove(key);
             }
+            --Count;
+            return true;
         }
 
         public void Clear()
         {
             Dictionary.Clear();
+            Count = 0;
         }
 
-        public bool ContainsKey(TK key)
+        public bool ContainsKey(TKey key)
         {
             return Dictionary.ContainsKey(key);
         }
 
-        public bool Contains(TK key, TV value)
+        public bool Contains(TKey key, TValue value)
         {
             if (!Dictionary.ContainsKey(key)) return false;
             return Dictionary[key].Contains(value);
@@ -76,17 +80,35 @@ namespace GenericApp
 
        
 
-        public ICollection<TK> Keys => Dictionary.Keys;
-        public ICollection<LinkedList<TV>> Values => Dictionary.Values;
+        public ICollection<TKey> Keys => Dictionary.Keys;
+
+        public ICollection<TValue> Values
+        {
+            get
+            {
+                var list = new List<TValue>();
+                foreach (var key in Dictionary)
+                {
+                    foreach (var value in key.Value)
+                    {
+                        if (!list.Contains(value))
+                        {
+                            list.Add(value);
+                        }
+                    }
+                }
+                return list;
+            }
+        }
         public int Count { get; private set; }
 
-        public IEnumerator<KeyValuePair<TK, IEnumerable<TV>>> GetEnumerator()
+        public IEnumerator<KeyValuePair<TKey, IEnumerable<TValue>>> GetEnumerator()
         {
-            var list = new List<KeyValuePair<TK, IEnumerable<TV>>>();
+            var list = new List<KeyValuePair<TKey, IEnumerable<TValue>>>();
 
             foreach (var item in Dictionary)
             {
-                list.Add(new KeyValuePair<TK, IEnumerable<TV>>(item.Key, item.Value));
+                list.Add(new KeyValuePair<TKey, IEnumerable<TValue>>(item.Key, item.Value));
             }
 
             return list.GetEnumerator();
