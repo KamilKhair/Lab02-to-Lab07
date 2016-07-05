@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace BinaryDisplayUnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class BinaryNumTester
     {
         [TestMethod]
         public void Test_ConvertToBinary_Positive()
@@ -20,6 +20,14 @@ namespace BinaryDisplayUnitTest
             var binary = new BinaryNum(-5);
             binary.ConvertToBinary();
             Assert.AreEqual("11111111111111111111111111111011", binary.BinaryNumber);
+        }
+
+        [TestMethod]
+        public void Test_ConvertToBinary_Zero()
+        {
+            var binary = new BinaryNum(0);
+            binary.ConvertToBinary();
+            Assert.AreEqual("0", binary.BinaryNumber);
         }
 
         [TestMethod]

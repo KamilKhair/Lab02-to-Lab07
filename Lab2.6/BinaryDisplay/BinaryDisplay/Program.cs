@@ -14,7 +14,7 @@ namespace BinaryDisplay
                 Console.WriteLine("Please enter an integer number ");
             }
 
-            BinaryNum number = new BinaryNum(num);
+            var number = new BinaryNum(num);
             number.ConvertToBinary();
             Console.WriteLine($"Binary representation of {num} is {number.BinaryNumber}");
 
