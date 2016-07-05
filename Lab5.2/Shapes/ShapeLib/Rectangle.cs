@@ -10,14 +10,14 @@ namespace ShapeLib
         {
             Width = width;
             Hieght = hieght;
-            Area = hieght * Width * 0.5;
+            Area = hieght * Width;
         }
 
         public Rectangle(double width, double hieght, ConsoleColor c) : base(c)
         {
             Width = width;
             Hieght = hieght;
-            Area = hieght * Width * 0.5;
+            Area = hieght * Width;
         }
 
         public override double Area { get; }
@@ -34,7 +34,7 @@ namespace ShapeLib
         public void Write(StringBuilder sb)
         {
             sb.AppendLine(Width.ToString(CultureInfo.CurrentCulture));
-            sb.AppendLine(Hieght.ToString(CultureInfo.InvariantCulture));
+            sb.AppendLine(Hieght.ToString(CultureInfo.CurrentCulture));
         }
 
         public int CompareTo(object obj)
@@ -43,15 +43,10 @@ namespace ShapeLib
             {
                 return 1;
             }
-            var otherRectangle = obj as Rectangle;
-            if (Width == otherRectangle.Width)
-            {
-                return Hieght.CompareTo(otherRectangle.Hieght);
-            }
-            else
-            {
-                return Width.CompareTo(otherRectangle.Width);
-            }
+            var otherRectangle = obj as Shape;
+            if (otherRectangle != null)
+                return Area.CompareTo(otherRectangle.Area);
+            throw new ArgumentException("Object is not a Shape");
         }
     }
 }

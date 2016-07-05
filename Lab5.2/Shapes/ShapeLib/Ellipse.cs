@@ -42,15 +42,10 @@ namespace ShapeLib
             {
                 return 1;
             }
-            var otherEllipse = obj as Ellipse;
-            if (Radius1 == otherEllipse.Radius1)
-            {
-                return Radius2.CompareTo(otherEllipse.Radius2);
-            }
-            else
-            {
-                return Radius1.CompareTo(otherEllipse.Radius1);
-            }
+            var otherEllipse = obj as Shape;
+            if (otherEllipse != null)
+                return Area.CompareTo(otherEllipse.Area);
+            throw new ArgumentException("Object is not a Shape");
         }
     }
 }

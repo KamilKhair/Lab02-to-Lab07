@@ -1,69 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using ShapeLib;
 
 namespace ShapesApp
 {
-    internal class ShapeManager
-    {
-        public ShapeManager()
-        {
-            Shapes = new List<Shape>();
-        }
-
-        public List<Shape> Shapes { get; }
-
-        public Shape this[int i] => Shapes[i];
-
-        private int Count => Shapes.Count;
-
-        public void Add(Shape shape)
-        {
-            Shapes.Add(shape);
-        }
-
-        public void DisplayAll()
-        {
-            //foreach (var sh in Shapes)
-            //{
-
-            //    sh.Display();
-            //    Console.WriteLine("The area is: " + sh.Area);
-            //}
-
-            for (var i = 0; i < Count; ++i)
-            {
-                Shapes[i].Display();
-                Console.WriteLine("The area is: " + Shapes[i].Area);
-            }
-        }
-
-        public void Save(StringBuilder sb)
-        {
-            for (var i = 0; i < Count; ++i)
-            {
-                var persist = Shapes[i] as IPersist;
-
-                persist?.Write(sb);
-
-                //if (null != persist)
-                //{
-                //    persist.Write(sb);
-                //}
-            }
-        }
-    }
-
     internal class Program
     {
         internal static void Main()
         {
             var shm = new ShapeManager();
-            shm.Add(new Rectangle(8, 9));
+            shm.Add(new Rectangle(8, 9, ConsoleColor.Blue));
             shm.Add(new Rectangle(5, 4));
-            //shm.Add(new Ellipse(5, 10, ConsoleColor.Cyan));
-            //shm.Add(new Circle(5, ConsoleColor.Yellow));
+            shm.Add(new Ellipse(8, 4, ConsoleColor.Yellow));
+            shm.Add(new Circle(2, ConsoleColor.Magenta));
 
             shm.DisplayAll();
 
@@ -77,8 +26,14 @@ namespace ShapesApp
 
             Console.WriteLine();
 
-
-            shm.Shapes.Sort();
+            try
+            {
+                shm.Shapes.Sort();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("ArgumentException: Object is not a Shape");
+            }
 
             Console.WriteLine("After sorting");
 
