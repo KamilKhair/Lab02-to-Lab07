@@ -8,7 +8,7 @@ namespace HelloPerson
         {
             Console.WriteLine("What's your name?");
             var name = Console.ReadLine();
-            Console.WriteLine("hello " + name + "!");
+            Console.WriteLine($"hello {name}!");
             Console.WriteLine("Please enter an integer number in the range 1-10");
             int number;
             label1:
@@ -21,9 +21,10 @@ namespace HelloPerson
                 Console.WriteLine("Error: Please enter an integer number in the range 1-10");
                 goto label1;
             }
-            for (var i = 0; i < number; ++i)
+            Console.WriteLine(name);
+            for (var i = 0; i < number - 1; ++i)
             {
-                Console.WriteLine(AddSpaces(i) + name);
+                Console.WriteLine($"{AddSpaces(i)} {name}");
             }
         }
 
