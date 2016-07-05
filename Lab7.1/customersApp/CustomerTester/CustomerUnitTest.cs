@@ -19,6 +19,7 @@ namespace CustomerTester
         [TestMethod]
         public void Test_Create_Sorting_Array_Of_Customers_Case_Insensitive()
         {
+            //customersArray and customersArray2 are initialized with same values
             var customersArray = new[]
             {
                 new Customer(301522637, "Kamil", "Maghar"),
@@ -38,6 +39,7 @@ namespace CustomerTester
                 new Customer(456547545, "Amir", "Maghar")
             };
 
+            //Sorting customersArray
             Array.Sort(customersArray);
 
             Assert.AreEqual(true, customersArray[0].Equals(customersArray2[4]));
@@ -51,6 +53,7 @@ namespace CustomerTester
         [TestMethod]
         public void Test_Create_Sorting_Array_Of_Customers_AnotherCustomerComparer()
         {
+            //customersArray and customersArray2 are initialized with same values
             var customersArray = new[]
             {
                 new Customer(301522637, "Kamil", "Maghar"),
@@ -70,6 +73,7 @@ namespace CustomerTester
                 new Customer(456547545, "Amir", "Maghar")
             };
 
+            //Sorting customersArray using a comparer
             var comparer = new AnotherCustomerComparer();
             Array.Sort(customersArray, comparer);
 
@@ -104,7 +108,7 @@ namespace CustomerTester
 
             customer1 = new Customer(2, "Amir", "Maghar");
             customer2 = new Customer(2, "Amir", "Haifa");
-            Assert.AreEqual(true, customer1.Equals(customer1));
+            Assert.AreEqual(true, customer1.Equals(customer2)); // The Equals method returns true if the Name and Id are equal.
         }
 
         [TestMethod]
