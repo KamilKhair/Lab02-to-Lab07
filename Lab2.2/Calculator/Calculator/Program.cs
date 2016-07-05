@@ -27,7 +27,7 @@ namespace Calculator
             }
             Console.WriteLine(!double.IsNaN(result)
                 ? $"{a} {@operator} {b} = {result}"
-                : "Incorrect operator has been inserted...");
+                : "Incorrect operator has been inserted!");
         }
     }
 }
