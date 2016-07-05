@@ -6,7 +6,7 @@ namespace DollarStairs
     {
         internal static void Main()
         {
-            Console.WriteLine("Plaese enter an integer number");
+            Console.WriteLine("Plaese enter an positive integer number");
             int n;
             while (!int.TryParse(Console.ReadLine(), out n))
             {
