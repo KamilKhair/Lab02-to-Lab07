@@ -4,7 +4,7 @@ using Strings;
 namespace StringsUnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class SentenceTester
     {
         [TestMethod]
         public void Test_SplitSentence()
@@ -14,6 +14,15 @@ namespace StringsUnitTest
             Assert.AreEqual(2, sentence.Arr.Length);
             Assert.AreEqual("Hello", sentence.Arr[0]);
             Assert.AreEqual("C#!", sentence.Arr[1]);
+        }
+
+        [TestMethod]
+        public void Test_SplitSentence_Empty_Sentence()
+        {
+            var sentence = new Sentence("");
+            sentence.SplitSentence();
+            Assert.AreEqual(1, sentence.Arr.Length);
+            Assert.AreEqual("", sentence.Arr[0]);
         }
 
         [TestMethod]
