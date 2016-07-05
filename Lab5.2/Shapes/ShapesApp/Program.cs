@@ -16,6 +16,7 @@ namespace ShapesApp
 
             shm.DisplayAll();
 
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine();
 
             Console.WriteLine("Before sorting");
@@ -30,9 +31,9 @@ namespace ShapesApp
             {
                 shm.Shapes.Sort();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Console.WriteLine("ArgumentException: Object is not a Shape");
+                Console.WriteLine(ex.Message);
             }
 
             Console.WriteLine("After sorting");
