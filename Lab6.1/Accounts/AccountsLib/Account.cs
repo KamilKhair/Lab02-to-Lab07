@@ -32,7 +32,7 @@ namespace AccountsLib
             Balance -= amount;
         }
 
-        public void Transfer(Account distenationAcc, double amount)
+        public void Transfer(Account destinationAcc, double amount)
         {
             var attempt = true;
             try
@@ -42,7 +42,7 @@ namespace AccountsLib
                     attempt = false;
                     throw new ArgumentOutOfRangeException(null, "Illigal amount to transfer!");
                 }
-                distenationAcc.Balance += amount;
+                destinationAcc.Balance += amount;
                 Balance -= amount;
             }
             catch (ArgumentOutOfRangeException ex)
@@ -55,7 +55,7 @@ namespace AccountsLib
                 {
                     Console.WriteLine("Transfer has been attempt!");
                     Console.WriteLine("Account id = " + Id + " has a new balance = " + Balance);
-                    Console.WriteLine("Account id = " + distenationAcc.Id + " has a new balance = " + distenationAcc.Balance);
+                    Console.WriteLine("Account id = " + destinationAcc.Id + " has a new balance = " + destinationAcc.Balance);
                 }
                 else
                 {
