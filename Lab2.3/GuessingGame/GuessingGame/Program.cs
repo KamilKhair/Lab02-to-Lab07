@@ -1,5 +1,4 @@
 ﻿using System;
-using static System.Console;
 
 namespace GuessingGame
 {
@@ -7,32 +6,37 @@ namespace GuessingGame
     {
         internal static void Main()
         {
-            var secret = new Random().Next(1, 100);
-            WriteLine("Welcome to the Guess Game !");
-            WriteLine("I have a number in the range 1-100, Please enter a number and try to guess it!");
+            var secret = new Random().Next(1, 101);
+            Console.WriteLine("Welcome to the Guess My Number Game !");
+            Console.WriteLine("I have a number in the range 1-100, Please enter a number and try to guess it!");
             var rounds = 0;
-            int number;
-            while (!int.TryParse(ReadLine(), out number))
-            {
-                Console.WriteLine("Error: Please insert a correct integer number:");
-            }
+            var number = 0;
+            var gameStarted = false;
             while (rounds < 7 && number != secret)
             {
-                WriteLine(number > secret ? "Too big, try again!" : "Too small, try again!");
-                while (!int.TryParse(ReadLine(), out number))
+                if (gameStarted)
+                {
+                    Console.WriteLine(number > secret ? "Too big, try again!" : "Too small, try again!");
+                }
+                label1:
+                while (!int.TryParse(Console.ReadLine(), out number))
                 {
                     Console.WriteLine("Error: Please insert a correct integer number:");
                 }
+                if (number < 1 || number > 100)
+                {
+                    Console.WriteLine("Error: Please insert a number in the range 1-100:");
+                    goto label1;
+                }
+                if (!gameStarted)
+                {
+                    gameStarted = true;
+                }
                 ++rounds;
             }
-            if (rounds == 7)
-            {
-                WriteLine("You Failed to guess the number in 7 rounds! the number is " + secret);
-            }
-            else
-            {
-                WriteLine("Good job! you guesed the number " + secret + " in " + (rounds + 1) + " rounds!");
-            }
+            Console.WriteLine(rounds == 7 && number != secret
+                ? $"You Failed to guess the number in 7 rounds! the number is {secret}"
+                : $"Good job! you guesed the number {secret} in {rounds} rounds!");
         }
     }
 }
