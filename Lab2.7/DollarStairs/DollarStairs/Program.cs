@@ -6,11 +6,11 @@ namespace DollarStairs
     {
         internal static void Main()
         {
-            Console.WriteLine("Plaese enter an positive integer number");
+            Console.WriteLine("Plaese enter a positive integer number");
             int n;
             while (!int.TryParse(Console.ReadLine(), out n))
             {
-                Console.WriteLine("Plaese enter an integer number");
+                Console.WriteLine("Plaese enter a positive integer number");
             }
             for (var i = 1; i < n + 1; ++i)
             {
