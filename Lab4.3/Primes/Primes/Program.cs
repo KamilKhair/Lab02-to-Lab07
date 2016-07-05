@@ -7,8 +7,10 @@ namespace Primes
     {
         private static void Main()
         {
-            Console.WriteLine("Please enter the first integer number:");
+            Console.WriteLine("Please enter the first positive integer number:");
             int a;
+
+            label1:
             if (!int.TryParse(Console.ReadLine(), out a))
             {
                 Console.WriteLine("Error parsing");
@@ -23,7 +25,13 @@ namespace Primes
                 return;
             }
 
-            if (b > 49999)
+            if (a <= 0 || b <= 0 || (b - a) <= 0)
+            {
+                Console.WriteLine("Error: Please Enter only 2 positive integers, the first one has to be larger than the second one, Enter the first nimber:");
+                goto label1;
+            }
+
+            if (b - a > 49999)
             {
                 Console.WriteLine("Processing... Please wait ");
             }
@@ -40,7 +48,7 @@ namespace Primes
             Console.WriteLine();
         }
 
-        public static int[] CalcPrimes(int a, int b)
+        private static IEnumerable<int> CalcPrimes(int a, int b)
         {
             var list = new List<int>();
             var size = 0;
