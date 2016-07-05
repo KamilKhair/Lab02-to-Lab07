@@ -1,3 +1,5 @@
+using System;
+
 namespace Calculator
 {
     public class Calc
@@ -13,9 +15,13 @@ namespace Calculator
                 case "*":
                     return Mul(a, b);
                 case "/":
-                    return b != 0 ? Div(a, b) : double.NaN;
+                    if (Math.Abs(b) > 0)
+                    {
+                        return Div(a, b);
+                    }
+                    throw new ArgumentOutOfRangeException(null, "Division by zero accured, And it is not allowed!");
                 default:
-                    return double.NaN;  // double.NAN represents a value that is not a number
+                    return double.NaN;  // double.NAN represents a value that is not a number, Calcu returns double.NAN if an incorrect operator has been loaded.
             }
         }
         private static double Add(double a, double b)

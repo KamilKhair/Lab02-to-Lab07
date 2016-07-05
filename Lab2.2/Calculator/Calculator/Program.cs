@@ -15,13 +15,17 @@ namespace Calculator
             }
             Console.WriteLine("Insert the operator ( +|-|*|/ )");
             var @operator = (Console.ReadLine());
-            var result = calculator.Calcu(a, b, @operator);
-            if (result == double.NegativeInfinity || result == double.PositiveInfinity)
+            double result;
+            try
             {
-                Console.WriteLine("Division by zero is not allowed!");
+                result = calculator.Calcu(a, b, @operator);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
                 return;
             }
-            Console.WriteLine(result != double.NaN
+            Console.WriteLine(!double.IsNaN(result)
                 ? $"{a} {@operator} {b} = {result}"
                 : "Incorrect operator has been inserted...");
         }
