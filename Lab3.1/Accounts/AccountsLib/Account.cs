@@ -21,15 +21,15 @@
 
         public bool Withdraw(double amount)
         {
-            if (!(Balance > amount)) return false;
+            if (!(Balance > amount && amount > 0)) return false;
             Balance -= amount;
             return true;
         }
 
-        public bool Transfer(Account distenationAcc, double amount)
+        public bool Transfer(Account destinationAcc, double amount)
         {
-            if (!(Balance >= amount)) return false;
-            distenationAcc.Balance += amount;
+            if (!(Balance >= amount && amount > 0)) return false;
+            destinationAcc.Balance += amount;
             Balance -= amount;
             return true;
         }
