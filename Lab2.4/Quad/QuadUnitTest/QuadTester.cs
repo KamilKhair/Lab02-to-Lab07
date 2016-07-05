@@ -1,8 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace QuadUnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class QuadTester
     {
         [TestMethod]
         public void Test_Two_Solutions()

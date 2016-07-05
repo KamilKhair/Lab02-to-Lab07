@@ -22,20 +22,23 @@ namespace Quad
         public void Calculate()
         {
             var sqrtPart = B * B - 4 * A * C;
-            if (A == 0 && B != 0)
+            // One Real Solution
+            if (!(Math.Abs(A) > 0) && Math.Abs(B) > 0) // if A == 0 AND B != 0
             {
                 X1 = -1.0*C/B;
             }
-            else if (A == 0)
+            else if (!(Math.Abs(A) > 0))
             {
-                // do nothing
+                // Do nothing
             }
+            // Two Real Solution
             else if (sqrtPart > 0)
             {
                 X1 = (-B + Math.Sqrt(sqrtPart)) / (2 * A);
                 X2 = (-B - Math.Sqrt(sqrtPart)) / (2 * A);
             }
-            else if (sqrtPart == 0 && (A != 0 || B != 0 || C != 0))
+            // One Real Solution
+            else if ( !(Math.Abs(sqrtPart) > 0) && (Math.Abs(A) > 0 || Math.Abs(B) > 0 || Math.Abs(C) > 0))
             {
                 X1 = (-B + Math.Sqrt(sqrtPart)) / (2 * A);
             }
