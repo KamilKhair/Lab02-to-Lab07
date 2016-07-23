@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CalculatorUnitTest
 {
+    //You have a good UnitTests.
     [TestClass]
     public class CalculatorTester
     {
@@ -14,6 +15,9 @@ namespace CalculatorUnitTest
             Assert.AreEqual(2.0, c.Calcu(1, 1, "+"));
         }
 
+        //Well, usually we will use each UnitTest method to test a single thing. 
+        //Also, usually the test is basic, with 'basic' input like 1, 2, etc...because somebody may wounder why did you specifically used 20 and 10.
+        //We have better option to use the same method with different input in other UnitTesting frameworks like nUnit and xUnit.
         [TestMethod]
         public void Test_Add_Negative()
         {
@@ -88,6 +92,8 @@ namespace CalculatorUnitTest
             Assert.AreEqual(0.0, c.Calcu(1, 1, "-"));
         }
 
+        //This test didn't run because you for forgot the [TestMethod] attribute ;)
+        //[TestMethod]
         public void Test_Sub_Negative()
         {
             var c = new Calc();
