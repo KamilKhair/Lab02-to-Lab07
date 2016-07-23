@@ -2,6 +2,7 @@
 
 namespace GuessingGame
 {
+    //Nice Job.
     internal class Program
     {
         internal static void Main()
@@ -26,6 +27,8 @@ namespace GuessingGame
                 if (number < 1 || number > 100)
                 {
                     Console.WriteLine("Error: Please insert a number in the range 1-100:");
+
+                    //You shold avoid goto statements.3
                     goto label1;
                 }
                 if (!gameStarted)
