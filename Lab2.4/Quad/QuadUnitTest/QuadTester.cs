@@ -2,6 +2,8 @@
 
 namespace QuadUnitTest
 {
+    //Your UnitTests are good, but they didn't catch the NaN mistake. That is because you don't have coverage for all of your logic.
+    //You have a logic in the Main that you didn't cover in the UnitTests. If you tested also that code, your UnitTests would have catched the mistake.
     [TestClass]
     public class QuadTester
     {

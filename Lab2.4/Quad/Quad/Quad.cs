@@ -13,6 +13,7 @@ namespace Quad
             X2 = double.NaN;
         }
 
+        //C# 6 features. Nice.
         public double A { get; }
         public double B { get; }
         public double C { get; }
