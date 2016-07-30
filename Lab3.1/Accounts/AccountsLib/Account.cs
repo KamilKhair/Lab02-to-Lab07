@@ -1,5 +1,6 @@
 ﻿namespace AccountsLib
 {
+    //Nice
     public class Account
     {
         internal Account(int id)
@@ -14,6 +15,8 @@
 
         public bool Deposit(double amount)
         {
+
+            //return amount <= 0 is more clrearer
             if (!(amount > 0)) return false;
             Balance += amount;
             return true;
