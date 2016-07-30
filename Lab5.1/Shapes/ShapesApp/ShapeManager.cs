@@ -11,13 +11,17 @@ namespace ShapesApp
             Shapes = new List<Shape>();
         }
 
+        /**
+         * You are breaking the encapsulation principle by making this property public
+         * Technically, you were supposed to use ArrayList, but this is indeed better and is a common practice to use List<T>
+         */
         public List<Shape> Shapes { get; }
 
         public Shape this[int i] => Shapes[i];
 
         private int Count => Shapes.Count;
 
-        public void Add(Shape shape)
+        public void Add(Shape shape)//Input validation!
         {
             Shapes.Add(shape);
         }

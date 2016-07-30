@@ -14,5 +14,13 @@ namespace ShapeLib
         {
             Radius = radius;
         }
+
+        /**
+         * I think you missed the point by not implementing the Display method here
+         * It presents a challenge which you noticed in advance (which is good) and solved by avoiding it altogether.
+         * Which is one way to do face it
+         * However, you will not always be so lucky..
+         * Please implement Display in this class and think of a way to solve the problem it presents
+         */
     }
 }

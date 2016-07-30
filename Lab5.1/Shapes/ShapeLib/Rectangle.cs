@@ -14,7 +14,7 @@ namespace ShapeLib
         {
             Width = width;
             Hieght = hieght;
-            Area = hieght * Width * 0.5;
+            Area = hieght * Width * 0.5;//why is it a half?
         }
 
         public Rectangle(double width, double hieght, ConsoleColor c) : base(c)

@@ -37,16 +37,21 @@ namespace ShapeLib
             sb.AppendLine(Hieght.ToString(CultureInfo.CurrentCulture));
         }
 
+        /**
+         * Partially Buggy implementation of method
+         * Consider the expected values according to interface documentation
+         * https://msdn.microsoft.com/en-us/library/system.icomparable(v=vs.110).aspx
+         */
         public int CompareTo(object obj)
         {
             if (obj == null)
             {
-                return 1;
+                return 1;//throw new ArgumentNullException(nameof(obj));
             }
             var otherRectangle = obj as Shape;
             if (otherRectangle != null)
                 return Area.CompareTo(otherRectangle.Area);
-            throw new ArgumentException("Object is not a Shape");
+            throw new ArgumentException("Object is not a Shape");//Very good!
         }
     }
 }
