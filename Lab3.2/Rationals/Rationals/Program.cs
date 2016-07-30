@@ -6,29 +6,21 @@ namespace Rationals
     {
         internal static void Main()
         {
-            var rationalArr = new[]
-            {
-                new Rational(2, 12),
-                new Rational(6, 32),
-                new Rational(),
-                new Rational()
-            };
+            var num1 = new Rational(1, 2);
+            var num2 = new Rational(1, 2);
 
-            rationalArr[2] = rationalArr[0].Add(rationalArr[1]);
-            rationalArr[3] = rationalArr[0].Mul(rationalArr[1]);
+            var num3 = num1.Add(num2);
+
+            var num4 = num2.Mul(num2);
+
+            var num6 = new Rational(2, 4);
+            var num7 = new Rational(2, 4);
+            num7.Reduce();
 
 
-            Console.WriteLine("Before Reduce:");
-            DisplayArr(rationalArr);
-
-            for (var i = 0; i < rationalArr.Length; ++i)
-            {
-                rationalArr[i].Reduce();
-            }
-
-            Console.WriteLine();
-            Console.WriteLine("After Reduce:");
-            DisplayArr(rationalArr);
+            Console.WriteLine($"{num1} + {num2} = {num3}");
+            Console.WriteLine($"{num2} * {num2} = {num4}");
+            Console.WriteLine($"{num6} reduced {num7}");
         }
 
         private static void DisplayArr(Rational[] rationalArr)

@@ -3,6 +3,7 @@ using Strings;
 
 namespace StringsUnitTest
 {
+    //Awesome
     [TestClass]
     public class SentenceTester
     {

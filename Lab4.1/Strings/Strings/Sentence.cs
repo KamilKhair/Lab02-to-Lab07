@@ -2,6 +2,7 @@ using System;
 
 namespace Strings
 {
+    //Cool
     public class Sentence
     {
         private readonly string _sentense;
@@ -11,6 +12,7 @@ namespace Strings
             _sentense = sentence;
         }
 
+        //Consider a better name
         public string[] Arr { get; private set; }
 
         public void SplitSentence()
@@ -20,6 +22,9 @@ namespace Strings
 
         public int NumberOfWords()
         {
+            //Hmm, this sounds wrong. Maybe 0 is better
+            //null == Arr ? 0 : Arr.Length;
+            //Or see if return Arr?.Length; will work. "?." is the 'elvis-operator', check it out.
             if (Arr == null)
             {
                 return -1;
@@ -29,6 +34,7 @@ namespace Strings
 
         public void ReverseWords()
         {
+            //You could have just added to the loop condition
             if (Arr == null)
             {
                 return;
@@ -41,6 +47,7 @@ namespace Strings
             }
         }
 
+        //Why didn't you throw an exception in the constructor if Arr was null, or something? 
         public void SortSentence()
         {
             if (Arr == null)

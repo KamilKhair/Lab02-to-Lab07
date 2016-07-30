@@ -7,7 +7,7 @@
             Numrrator = numerator;
             Denomirator = denomirator == 0 ? 1 : denomirator;
         }
-
+        //It was better to call the other constructor: Rational(int numerator) : this(numerator, 1) { }
         public Rational(int numerator)
         {
             Numrrator = numerator;
@@ -17,6 +17,7 @@
 
         public int Denomirator { get; private set; }
 
+        //Nice
         public double Value => (double)Numrrator / Denomirator;
 
         public Rational Add(Rational r)
@@ -47,6 +48,8 @@
             Denomirator /= Gcd(numerator, Denomirator);
         }
 
+        //The 'ToString' in here is redeundant. You are concatenating strings, so it will be called implicitly.
+        //Also, consider the use of string interplation (with the '$' sign)
         public override string ToString()
         {
             return Numrrator.ToString() + "/" + Denomirator.ToString();
