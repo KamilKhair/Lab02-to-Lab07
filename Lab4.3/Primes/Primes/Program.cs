@@ -5,6 +5,7 @@ namespace Primes
 {
     internal class Program
     {
+        //Consider extracting this logic to a different class.
         private static void Main()
         {
             Console.WriteLine("Please enter the first positive integer number:");
@@ -31,8 +32,10 @@ namespace Primes
                 goto label1;
             }
 
+            //What is this magic number for?
             if (b - a > 49999)
             {
+                //LOL
                 Console.WriteLine("Processing... Please wait ");
             }
 
@@ -40,8 +43,12 @@ namespace Primes
 
             Console.WriteLine("The primes are: ");
 
+            //Consider a better name for both of them
             foreach (var t in arr)
             {
+                //Consider the use of Console.Write overload that accepts a format: Console.Write("{0} ", t);
+                //Or string.Format: Console.Write(string.Format("{0} ", t));
+                //Or even better string interpolation: Console.Write($"{t} ");
                 Console.Write(t + " ");
             }
 
@@ -65,6 +72,8 @@ namespace Primes
                 list.Add(i);
                 ++size;
             }
+
+            //Size is not necessary. You could use list.Count: var result = new int[list.Count]
             var result = new int[size];
             list.CopyTo(result);
             return result;
