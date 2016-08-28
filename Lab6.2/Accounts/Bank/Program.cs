@@ -5,6 +5,7 @@ namespace Bank
 {
     internal class Program
     {
+        //You should have catched an InsufficientFundsException exception
         internal static void Main()
         {
             Console.WriteLine("Let's create our first account! Please enter Account ID:");
