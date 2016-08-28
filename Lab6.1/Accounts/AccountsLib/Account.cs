@@ -16,6 +16,7 @@ namespace AccountsLib
 
         public void Deposit(double amount)
         {
+            //amount < 0
             if (!(amount > 0))
             {
                 throw new ArgumentOutOfRangeException(null, "Hey! you can not deposit 0 or negative amount! ");
@@ -45,12 +46,15 @@ namespace AccountsLib
                 destinationAcc.Balance += amount;
                 Balance -= amount;
             }
+
+            //Should be catchd in main
             catch (ArgumentOutOfRangeException ex)
             {
                 Console.WriteLine(ex.Message);
             }
             finally
             {
+                //where is the try-finally and the logging with the *balance* before and after the operation is done?
                 if (attempt)
                 {
                     Console.WriteLine("Transfer has been attempt!");
